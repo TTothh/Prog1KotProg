@@ -10,9 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MapTile {
+	private final int SIZE = 32;
+
 	private boolean isWet = false;
 	private boolean isVisible = false;
-	private final int SIZE = 32;
 	private TileTypes type;
 
 	public Image drawMaptile(TileTypes type) throws IOException {
@@ -26,6 +27,18 @@ public class MapTile {
 		}
 
 		return tile;
+	}
+
+	public MapTile() {
+		this.isWet = true;
+		this.isVisible = false;
+		this.type = TileTypes.SEA;
+	}
+
+	public MapTile(boolean isWet, boolean isVisible, TileTypes type) {
+		this.isWet = isWet;
+		this.isVisible = isVisible;
+		this.type = type;
 	}
 
 	public boolean isWet() {
@@ -42,5 +55,13 @@ public class MapTile {
 
 	public void setVisible(boolean visible) {
 		isVisible = visible;
+	}
+
+	public TileTypes getType() {
+		return type;
+	}
+
+	public void setType(TileTypes type) {
+		this.type = type;
 	}
 }
