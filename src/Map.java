@@ -18,14 +18,16 @@ public class Map {
 	}
 
 	public void Generate() {
+		GenerateSea();
+	}
+
+	private void GenerateSea() {
 		for (int i = 0; i < WIDTH; i++) {
 			for (int j = 0; j < HEIGHT; j++) {
 				tiles[i][j] = new MapTile();
 			}
 		}
 	}
-
-
 
 	@Override
 	public String toString() {
