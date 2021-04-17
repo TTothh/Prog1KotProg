@@ -14,7 +14,7 @@ public class Map {
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 
-		tiles = new MapTile[WIDTH][HEIGHT];
+		tiles = new MapTile[HEIGHT][WIDTH];
 	}
 
 	public void Generate() {
@@ -22,8 +22,8 @@ public class Map {
 	}
 
 	private void GenerateSea() {
-		for (int i = 0; i < WIDTH; i++) {
-			for (int j = 0; j < HEIGHT; j++) {
+		for (int i = 0; i < HEIGHT; i++) {
+			for (int j = 0; j < WIDTH; j++) {
 				tiles[i][j] = new MapTile();
 			}
 		}
@@ -33,8 +33,8 @@ public class Map {
 	public String toString() {
 		StringBuilder out = new StringBuilder();
 
-		for (int i = 0; i < WIDTH; i++) {
-			for (int j = 0; j < HEIGHT; j++) {
+		for (int i = 0; i < HEIGHT; i++) {
+			for (int j = 0; j < WIDTH; j++) {
 				out.append(tiles[i][j].getType().getValue(tiles[i][j].getType())); //Jank, but working. Enums in Java suck
 			}
 			out.append("\n");
