@@ -1,6 +1,8 @@
 import Enums.TileTypes;
 import JavaReImplementations.Random;
 import java.awt.*;
+import java.io.IOException;
+import java.util.logging.Level;
 
 
 public class Map {
@@ -16,7 +18,7 @@ public class Map {
 		tiles = new MapTile[HEIGHT][WIDTH];
 	}
 
-	public void Generate() {
+	public void Generate() throws IOException {
 		GenerateSea();
 		GenerateLandMass();
 	}
@@ -31,7 +33,8 @@ public class Map {
 
 	//TODO: other generate other type of tiles
 
-	private void GenerateLandMass() {
+	private void GenerateLandMass() throws IOException {
+		Logging.Log("Generating sea", "Setup.log" , this.getClass().getName(), Level.INFO);
 		Random r = new Random();
 		int DELTA = 3;
 		int linePos = (int) Math.floor((double) WIDTH / 2) - 10;
