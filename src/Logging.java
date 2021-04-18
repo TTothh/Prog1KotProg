@@ -7,9 +7,6 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class Logging {
-	private static String msg;
-	private static String File;
-
 	public static void Log(String msg, String file, String className, Level level) throws IOException {
 		Logger logger = Logger.getLogger(className);
 		FileHandler fh;

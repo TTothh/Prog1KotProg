@@ -1,8 +1,7 @@
 import Enums.TileTypes;
+import JavaReImplementations.Random;
+import java.awt.*;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
 
 public class Map {
 	private int WIDTH;
@@ -19,6 +18,7 @@ public class Map {
 
 	public void Generate() {
 		GenerateSea();
+		GenerateLandMass();
 	}
 
 	private void GenerateSea() {
@@ -29,13 +29,35 @@ public class Map {
 		}
 	}
 
+	//TODO: other generate other type of tiles
+
+	private void GenerateLandMass() {
+		Random r = new Random();
+		int DELTA = 3;
+		int linePos = (int) Math.floor((double) WIDTH / 2) - 10;
+		Point previous = new Point(r.NextRandom(linePos - DELTA, linePos + DELTA), 0);
+		Point current;
+
+		for (int i = 0; i < HEIGHT; i++) {
+			current = new Point(r.NextRandom(previous.x - 1, previous.x + 2), i);
+
+			for (int j = 0; j < WIDTH; j++) {
+				if(j >= current.x) {
+					tiles[i][j] = new MapTile(false, false, TileTypes.GRASS);
+				}
+			}
+
+			previous = current;
+		}
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder out = new StringBuilder();
 
 		for (int i = 0; i < HEIGHT; i++) {
 			for (int j = 0; j < WIDTH; j++) {
-				out.append(tiles[i][j].getType().getValue(tiles[i][j].getType())); //Jank, but working. Enums in Java suck
+				out.append(tiles[i][j].getType().getValue(tiles[i][j].getType())).append("\t"); //Jank, but working. Enums in Java suck
 			}
 			out.append("\n");
 		}
