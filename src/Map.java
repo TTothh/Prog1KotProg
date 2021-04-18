@@ -18,12 +18,13 @@ public class Map {
 		tiles = new MapTile[HEIGHT][WIDTH];
 	}
 
-	public void Generate() throws IOException {
+	public void Generate() {
 		GenerateSea();
 		GenerateLandMass();
 	}
 
 	private void GenerateSea() {
+		Logging.Log("Generating sea", "Setup.log" , this.getClass().getName(), Level.INFO);
 		for (int i = 0; i < HEIGHT; i++) {
 			for (int j = 0; j < WIDTH; j++) {
 				tiles[i][j] = new MapTile();
@@ -33,8 +34,8 @@ public class Map {
 
 	//TODO: other generate other type of tiles
 
-	private void GenerateLandMass() throws IOException {
-		Logging.Log("Generating sea", "Setup.log" , this.getClass().getName(), Level.INFO);
+	private void GenerateLandMass() {
+		Logging.Log("Generating land", "Setup.log" , getClass().getName(), Level.INFO);
 		Random r = new Random();
 		int DELTA = 3;
 		int linePos = (int) Math.floor((double) WIDTH / 2) - 10;

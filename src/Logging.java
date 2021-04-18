@@ -1,31 +1,29 @@
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.nio.file.StandardOpenOption;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+import java.util.logging.*;
 
 public class Logging {
 	public static void Log(String msg, String file, String className, Level level) {
-		Logger logger = Logger.getLogger(className);
-		FileHandler fh;
+		Path log = Paths.get("Logs\\" + file);
 		try {
-			fh = new FileHandler(file);
-		} catch (IOException e) {
-			try {
-				Files.createDirectories(Paths.get(file).getParent());
-				Files.createFile(Paths.get(file));
-				fh = new FileHandler(file);
-				System.out.println("I dunno at this point.");
-				logger.addHandler(fh);
-				SimpleFormatter sf = new SimpleFormatter();
-				fh.setFormatter(sf);
-				logger.log(level, msg);
-			} catch (IOException er) {
-				System.out.println("Error");
+			if(!Files.isDirectory(log.getParent())) {
+				Files.createDirectory(log.getParent());
 			}
-		}
+			if(!Files.exists(log)) {
+				Files.createFile(log);
+			}
 
+			String msgToWrite = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(Date.from(Instant.now())) + " [" + className + "] [" + level + "] : " + msg + "\r\n";
+
+			Files.writeString(log, msgToWrite, StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			System.out.println("Error");
+		}
 	}
 }
