@@ -1,7 +1,6 @@
-import javax.swing.*;
+package src;
+
 import java.awt.*;
-import java.io.IOException;
-import java.util.logging.Level;
 
 public class Main {
 	public static final int SCREENWIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
