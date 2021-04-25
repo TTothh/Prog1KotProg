@@ -14,6 +14,7 @@ public class MapTile {
 
 	private boolean isWet;
 	private boolean isVisible;
+	private boolean isWalkable = true;
 	private TileTypes type;
 
 	public Image drawMaptile(TileTypes type) throws IOException {
@@ -33,12 +34,14 @@ public class MapTile {
 		this.isWet = true;
 		this.isVisible = false;
 		this.type = TileTypes.SEA;
+		this.isWalkable = false;
 	}
 
-	public MapTile(boolean isWet, boolean isVisible, TileTypes type) {
+	public MapTile(boolean isWet, boolean isVisible, boolean isWalkable, TileTypes type) {
 		this.isWet = isWet;
 		this.isVisible = isVisible;
 		this.type = type;
+		this.isWalkable = isWalkable;
 	}
 
 	public boolean isWet() {

@@ -34,6 +34,7 @@ public class Map {
 		GenerateVillages();
 		GenerateAltars();
 		GeneratePyramid();
+		GenerateDock();
 	}
 
 	private void GenerateSea() {
@@ -57,7 +58,7 @@ public class Map {
 
 			for (int j = 0; j < WIDTH; j++) {
 				if (j >= current.x) {
-					tiles[i][j] = new MapTile(false, false, TileTypes.GRASS);
+					tiles[i][j] = new MapTile(false, false, true, TileTypes.GRASS);
 				}
 			}
 
@@ -80,17 +81,136 @@ public class Map {
 
 		for (int i = 0; i < noLakes; i++) {
 			curr = getNewValidCoords(isAllowedOn);
-			tiles[curr.y][curr.x] = new MapTile(true, false, TileTypes.LAKE);
+			tiles[curr.y][curr.x] = new MapTile(true, false, false, TileTypes.LAKE);
 
 			for (int j = 0; j < sizeofLakes[i]; j++) {
 				neighbours = getNeighbours(curr);
 				next = neighbours.get(r.NextRandom(0, neighbours.size() - 2));
 				try {
-					tiles[next.y][next.x] = new MapTile(true, false, TileTypes.LAKE);
+					tiles[next.y][next.x] = new MapTile(true, false, false, TileTypes.LAKE);
 				} catch (Exception e) {
 					System.out.println(next.y + " : " + next.x);
 				}
 				curr = next;
+			}
+		}
+	}
+
+	private void GenerateMountains() {
+		Logging.Log("Generating Mountains", "Setup.log", getClass().getName(), Level.INFO);
+		int noMountains = r.NextRandom(15, 28);
+		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS, TileTypes.LAKE, TileTypes.JUNGLE));
+		Point newMountain;
+
+		for (int i = 0; i < noMountains; i++) {
+			newMountain = getNewValidCoords(isAllowedOn);
+			tiles[newMountain.y][newMountain.x] = new MapTile(false, false, false, TileTypes.MOUNTAIN);
+		}
+	}
+
+	private void GenerateCaves() {
+		Logging.Log("Generating Caves", "Setup.log", getClass().getName(), Level.INFO);
+		int noCaves = r.NextRandom(6, 20);
+		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS, TileTypes.LAKE, TileTypes.JUNGLE));
+		Point newCave;
+
+		for (int i = 0; i < noCaves; i++) {
+			newCave = getNewValidCoords(isAllowedOn);
+			tiles[newCave.y][newCave.x] = new MapTile(false, false, true, TileTypes.CAVE);
+		}
+	}
+
+
+	private void GenerateAltars() {
+		Logging.Log("Generating Altars", "Setup.log", getClass().getName(), Level.INFO);
+		int noAltars = r.NextRandom(3, 13);
+		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS, TileTypes.JUNGLE));
+		Point newCave;
+
+		for (int i = 0; i < noAltars; i++) {
+			newCave = getNewValidCoords(isAllowedOn);
+			tiles[newCave.y][newCave.x] = new MapTile(false, false, true, TileTypes.ALTAR);
+		}
+	}
+
+	private void GenerateJungle() {
+		Logging.Log("Generating Jungles", "Setup.log", getClass().getName(), Level.INFO);
+		int noJungles = r.NextRandom(5, 10);
+		int[] sizeofJungles = new int[noJungles];
+		Point curr;
+		Point next = new Point(0, 0);
+		ArrayList<Point> neighbours;
+		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS));
+
+		for (int i = 0; i < noJungles; i++) {
+			sizeofJungles[i] = r.NextRandom(20, 30);
+		}
+
+		for (int i = 0; i < noJungles; i++) {
+			curr = getNewValidCoords(isAllowedOn);
+			tiles[curr.y][curr.x] = new MapTile(true, false, true, TileTypes.JUNGLE);
+
+			for (int j = 0; j < sizeofJungles[i]; j++) {
+				neighbours = getNeighbours(curr);
+				try {
+					next = neighbours.get(r.NextRandom(0, neighbours.size() - 2));
+				} catch (Exception e) {
+					System.out.println("dsa");
+				}
+				try {
+					tiles[next.y][next.x] = new MapTile(true, false, true, TileTypes.JUNGLE);
+				} catch (Exception e) {
+					System.out.println(next.y + " : " + next.x);
+				}
+				curr = next;
+			}
+		}
+	}
+
+	private void GenerateVillages() {
+		Logging.Log("Generating Villages", "Setup.log", getClass().getName(), Level.INFO);
+		int noVillages = r.NextRandom(10, 16);
+		int[] sizeofVillages = new int[noVillages];
+		Point curr;
+		Point next;
+		ArrayList<Point> neighbours;
+		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS, TileTypes.JUNGLE, TileTypes.LAKE));
+
+		for (int i = 0; i < noVillages; i++) {
+			sizeofVillages[i] = r.NextRandom(2, 5);
+		}
+
+		for (int i = 0; i < noVillages; i++) {
+			curr = getNewValidCoords(isAllowedOn);
+			tiles[curr.y][curr.x] = new MapTile(true, false, true, TileTypes.VILLAGE);
+
+			for (int j = 0; j < sizeofVillages[i]; j++) {
+				neighbours = getNeighbours(curr);
+				next = neighbours.get(r.NextRandom(0, neighbours.size() - 2));
+				try {
+					tiles[next.y][next.x] = new MapTile(true, false, true, TileTypes.VILLAGE);
+				} catch (Exception e) {
+					System.out.println(next.y + " : " + next.x);
+				}
+				curr = next;
+			}
+		}
+	}
+
+	private void GeneratePyramid() {
+		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.JUNGLE, TileTypes.LAKE, TileTypes.VILLAGE));
+		Point pyramid = getNewValidCoords(isAllowedOn);
+		tiles[pyramid.y][pyramid.x] = new MapTile(false, false, true, TileTypes.GOLDENPYRAMID);
+	}
+
+	private void GenerateDock() {
+		Point pos = new Point(r.NextRandom(0, HEIGHT - 1), 0);
+
+loop:
+		for (int j = 0; j < WIDTH; j++) {
+			if (tiles[pos.x][j].getType() != TileTypes.SEA) {
+				tiles[pos.x][j] = new MapTile(false, true, true, TileTypes.DOCK);
+				break loop;
 			}
 		}
 	}
@@ -121,8 +241,11 @@ public class Map {
 				if (j < 0 || j == WIDTH || (curr.y == i && curr.x == j)) {
 					continue;
 				}
+
+				//nbs.add(new Point(j, i));
+				//Fix this if I don't fuck with the generation anymore
 				try {
-					if (tiles[i][j].getType() != TileTypes.LAKE) {
+					if (tiles[i][j].getType() != TileTypes.SEA) {
 						nbs.add(new Point(j, i));
 					}
 				} catch (Exception e) {
@@ -132,109 +255,6 @@ public class Map {
 		}
 
 		return nbs;
-	}
-
-	private void GenerateMountains() {
-		Logging.Log("Generating Mountains", "Setup.log", getClass().getName(), Level.INFO);
-		int noMountains = r.NextRandom(15, 28);
-		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS, TileTypes.LAKE, TileTypes.JUNGLE));
-		Point newMountain;
-
-		for (int i = 0; i < noMountains; i++) {
-			newMountain = getNewValidCoords(isAllowedOn);
-			tiles[newMountain.y][newMountain.x] = new MapTile(false, false, TileTypes.MOUNTAIN);
-		}
-	}
-
-	private void GenerateCaves() {
-		Logging.Log("Generating Caves", "Setup.log", getClass().getName(), Level.INFO);
-		int noCaves = r.NextRandom(6, 20);
-		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS, TileTypes.LAKE, TileTypes.JUNGLE));
-		Point newCave;
-
-		for (int i = 0; i < noCaves; i++) {
-			newCave = getNewValidCoords(isAllowedOn);
-			tiles[newCave.y][newCave.x] = new MapTile(false, false, TileTypes.CAVE);
-		}
-	}
-
-
-	private void GenerateAltars() {
-		Logging.Log("Generating Altars", "Setup.log", getClass().getName(), Level.INFO);
-		int noAltars = r.NextRandom(3, 13);
-		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS, TileTypes.JUNGLE));
-		Point newCave;
-
-		for (int i = 0; i < noAltars; i++) {
-			newCave = getNewValidCoords(isAllowedOn);
-			tiles[newCave.y][newCave.x] = new MapTile(false, false, TileTypes.ALTAR);
-		}
-	}
-
-	private void GenerateJungle() {
-		Logging.Log("Generating Jungles", "Setup.log", getClass().getName(), Level.INFO);
-		int noJungles = r.NextRandom(5, 10);
-		int[] sizeofJungles = new int[noJungles];
-		Point curr;
-		Point next;
-		ArrayList<Point> neighbours;
-		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS));
-
-		for (int i = 0; i < noJungles; i++) {
-			sizeofJungles[i] = r.NextRandom(20, 30);
-		}
-
-		for (int i = 0; i < noJungles; i++) {
-			curr = getNewValidCoords(isAllowedOn);
-			tiles[curr.y][curr.x] = new MapTile(true, false, TileTypes.JUNGLE);
-
-			for (int j = 0; j < sizeofJungles[i]; j++) {
-				neighbours = getNeighbours(curr);
-				next = neighbours.get(r.NextRandom(0, neighbours.size() - 2));
-				try {
-					tiles[next.y][next.x] = new MapTile(true, false, TileTypes.JUNGLE);
-				} catch (Exception e) {
-					System.out.println(next.y + " : " + next.x);
-				}
-				curr = next;
-			}
-		}
-	}
-
-	private void GenerateVillages() {
-		Logging.Log("Generating Villages", "Setup.log", getClass().getName(), Level.INFO);
-		int noVillages = r.NextRandom(10, 16);
-		int[] sizeofVillages = new int[noVillages];
-		Point curr;
-		Point next;
-		ArrayList<Point> neighbours;
-		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS, TileTypes.JUNGLE, TileTypes.LAKE));
-
-		for (int i = 0; i < noVillages; i++) {
-			sizeofVillages[i] = r.NextRandom(2, 5);
-		}
-
-		for (int i = 0; i < noVillages; i++) {
-			curr = getNewValidCoords(isAllowedOn);
-			tiles[curr.y][curr.x] = new MapTile(true, false, TileTypes.VILLAGE);
-
-			for (int j = 0; j < sizeofVillages[i]; j++) {
-				neighbours = getNeighbours(curr);
-				next = neighbours.get(r.NextRandom(0, neighbours.size() - 2));
-				try {
-					tiles[next.y][next.x] = new MapTile(true, false, TileTypes.VILLAGE);
-				} catch (Exception e) {
-					System.out.println(next.y + " : " + next.x);
-				}
-				curr = next;
-			}
-		}
-	}
-
-	private void GeneratePyramid() {
-		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.JUNGLE, TileTypes.LAKE,TileTypes.VILLAGE));
-		Point pyramid = getNewValidCoords(isAllowedOn);
-		tiles[pyramid.y][pyramid.x] = new MapTile(false, false, TileTypes.GOLDENPYRAMID);
 	}
 
 	@Override

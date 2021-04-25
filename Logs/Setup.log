@@ -618,3 +618,252 @@
 2021.04.22 17:59:48 [src.Map] [INFO] : Generating Caves
 2021.04.22 17:59:48 [src.Map] [INFO] : Generating Villages
 2021.04.22 17:59:48 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.24 13:21:19 [src.Map] [INFO] : Generating sea
+2021.04.24 13:21:19 [src.Map] [INFO] : Generating land
+2021.04.24 13:21:19 [src.Map] [INFO] : Generating Lakes
+2021.04.24 13:21:19 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.24 13:21:24 [src.Map] [INFO] : Generating sea
+2021.04.24 13:21:24 [src.Map] [INFO] : Generating land
+2021.04.24 13:21:24 [src.Map] [INFO] : Generating Lakes
+2021.04.24 13:21:24 [src.Map] [INFO] : Generating Jungles
+2021.04.24 13:21:24 [src.Map] [INFO] : Generating Mountains
+2021.04.24 13:21:24 [src.Map] [INFO] : Generating Caves
+2021.04.24 13:21:24 [src.Map] [INFO] : Generating Villages
+2021.04.24 13:21:24 [src.Map] [INFO] : Generating Altars
+2021.04.24 16:27:56 [src.Map] [INFO] : Generating sea
+2021.04.24 16:27:56 [src.Map] [INFO] : Generating land
+2021.04.24 16:27:56 [src.Map] [INFO] : Generating Lakes
+2021.04.24 16:27:56 [src.Map] [INFO] : Generating Jungles
+2021.04.24 16:27:56 [src.Map] [INFO] : Generating Mountains
+2021.04.24 16:27:56 [src.Map] [INFO] : Generating Caves
+2021.04.24 16:27:56 [src.Map] [INFO] : Generating Villages
+2021.04.24 16:27:56 [src.Map] [INFO] : Generating Altars
+2021.04.24 16:28:02 [src.Map] [INFO] : Generating sea
+2021.04.24 16:28:02 [src.Map] [INFO] : Generating land
+2021.04.24 16:28:02 [src.Map] [INFO] : Generating Lakes
+2021.04.24 16:28:02 [src.Map] [INFO] : Generating Jungles
+2021.04.24 16:28:02 [src.Map] [INFO] : Generating Mountains
+2021.04.24 16:28:02 [src.Map] [INFO] : Generating Caves
+2021.04.24 16:28:02 [src.Map] [INFO] : Generating Villages
+2021.04.24 16:28:02 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:06:47 [src.Map] [INFO] : Generating sea
+2021.04.25 09:06:47 [src.Map] [INFO] : Generating land
+2021.04.25 09:06:47 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:06:47 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:06:47 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.25 09:08:03 [src.Map] [INFO] : Generating sea
+2021.04.25 09:08:03 [src.Map] [INFO] : Generating land
+2021.04.25 09:08:03 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:08:03 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:08:03 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.25 09:08:12 [src.Map] [INFO] : Generating sea
+2021.04.25 09:08:12 [src.Map] [INFO] : Generating land
+2021.04.25 09:08:12 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:08:12 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:08:12 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.25 09:08:59 [src.Map] [INFO] : Generating sea
+2021.04.25 09:08:59 [src.Map] [INFO] : Generating land
+2021.04.25 09:08:59 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:08:59 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:08:59 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-2
+2021.04.25 09:09:35 [src.Map] [INFO] : Generating sea
+2021.04.25 09:09:35 [src.Map] [INFO] : Generating land
+2021.04.25 09:09:35 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:09:35 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:09:55 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.25 09:10:17 [src.Map] [INFO] : Generating sea
+2021.04.25 09:10:17 [src.Map] [INFO] : Generating land
+2021.04.25 09:10:17 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:10:17 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:10:17 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-2
+2021.04.25 09:10:57 [src.Map] [INFO] : Generating sea
+2021.04.25 09:10:57 [src.Map] [INFO] : Generating land
+2021.04.25 09:10:57 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:10:57 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:11:13 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:12:13 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.25 09:12:22 [src.Map] [INFO] : Generating sea
+2021.04.25 09:12:22 [src.Map] [INFO] : Generating land
+2021.04.25 09:12:22 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:12:22 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:12:22 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:12:22 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:12:22 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:12:22 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.25 09:13:28 [src.Map] [INFO] : Generating sea
+2021.04.25 09:13:28 [src.Map] [INFO] : Generating land
+2021.04.25 09:13:28 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:13:28 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:13:28 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:13:28 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:13:28 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.25 09:13:28 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:13:28 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:13:28 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:13:28 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-2
+2021.04.25 09:15:00 [src.Map] [INFO] : Generating sea
+2021.04.25 09:15:00 [src.Map] [INFO] : Generating land
+2021.04.25 09:15:00 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:15:00 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:15:00 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-2
+2021.04.25 09:15:40 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-2
+2021.04.25 09:15:40 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-2
+2021.04.25 09:15:40 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-2
+2021.04.25 09:15:40 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-2
+2021.04.25 09:15:40 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-2
+2021.04.25 09:15:40 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-2
+2021.04.25 09:15:40 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.25 09:15:40 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:15:40 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|-1
+2021.04.25 09:15:40 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:15:40 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:15:40 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:15:40 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:16:25 [src.Map] [INFO] : Generating sea
+2021.04.25 09:16:25 [src.Map] [INFO] : Generating land
+2021.04.25 09:16:25 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:16:25 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:16:25 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:16:25 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:16:25 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:16:25 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:16:34 [src.Map] [INFO] : Generating sea
+2021.04.25 09:16:34 [src.Map] [INFO] : Generating land
+2021.04.25 09:16:34 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:16:34 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:16:34 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:16:34 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:16:34 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:16:34 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:16:40 [src.Map] [INFO] : Generating sea
+2021.04.25 09:16:40 [src.Map] [INFO] : Generating land
+2021.04.25 09:16:40 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:16:40 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:16:40 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:16:40 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:16:40 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:16:40 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:16:54 [src.Map] [INFO] : Generating sea
+2021.04.25 09:16:54 [src.Map] [INFO] : Generating land
+2021.04.25 09:16:54 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:16:54 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:16:54 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:16:54 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:16:54 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:16:54 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:16:58 [src.Map] [INFO] : Generating sea
+2021.04.25 09:16:58 [src.Map] [INFO] : Generating land
+2021.04.25 09:16:58 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:16:58 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:16:58 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:16:58 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:16:58 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:16:58 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:17:02 [src.Map] [INFO] : Generating sea
+2021.04.25 09:17:02 [src.Map] [INFO] : Generating land
+2021.04.25 09:17:02 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:17:02 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:17:02 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:17:02 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:17:02 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:17:02 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:30:31 [src.Map] [INFO] : Generating sea
+2021.04.25 09:30:31 [src.Map] [INFO] : Generating land
+2021.04.25 09:30:31 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:30:31 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:30:31 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:30:31 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:30:31 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:30:31 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:31:35 [src.Map] [INFO] : Generating sea
+2021.04.25 09:31:35 [src.Map] [INFO] : Generating land
+2021.04.25 09:31:35 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:31:35 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:31:35 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:31:35 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:31:35 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:31:35 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:31:46 [src.Map] [INFO] : Generating sea
+2021.04.25 09:31:46 [src.Map] [INFO] : Generating land
+2021.04.25 09:31:46 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:31:46 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:31:46 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:31:46 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:31:46 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:31:46 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:33:22 [src.Map] [INFO] : Generating sea
+2021.04.25 09:33:22 [src.Map] [INFO] : Generating land
+2021.04.25 09:33:22 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:33:22 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:33:22 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:33:22 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:33:22 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:33:22 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:33:34 [src.Map] [INFO] : Generating sea
+2021.04.25 09:33:34 [src.Map] [INFO] : Generating land
+2021.04.25 09:33:34 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:33:34 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:33:34 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:33:34 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:33:34 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:33:34 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:35:08 [src.Map] [INFO] : Generating sea
+2021.04.25 09:35:08 [src.Map] [INFO] : Generating land
+2021.04.25 09:35:08 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:35:08 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:35:08 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:35:08 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:35:08 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:35:08 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:35:13 [src.Map] [INFO] : Generating sea
+2021.04.25 09:35:13 [src.Map] [INFO] : Generating land
+2021.04.25 09:35:13 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:35:13 [src.JavaReImplementations.Random] [SEVERE] : Wrong values at NextRandom generation: 0|0
+2021.04.25 09:35:13 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:35:13 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:35:13 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:35:13 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:35:13 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:35:17 [src.Map] [INFO] : Generating sea
+2021.04.25 09:35:17 [src.Map] [INFO] : Generating land
+2021.04.25 09:35:17 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:35:17 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:35:17 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:35:17 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:35:17 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:35:17 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:35:22 [src.Map] [INFO] : Generating sea
+2021.04.25 09:35:22 [src.Map] [INFO] : Generating land
+2021.04.25 09:35:22 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:35:22 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:35:22 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:35:22 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:35:22 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:35:22 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:36:05 [src.Map] [INFO] : Generating sea
+2021.04.25 09:36:05 [src.Map] [INFO] : Generating land
+2021.04.25 09:36:05 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:36:05 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:36:05 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:36:05 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:36:05 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:36:05 [src.Map] [INFO] : Generating Altars
+2021.04.25 09:36:36 [src.Map] [INFO] : Generating sea
+2021.04.25 09:36:36 [src.Map] [INFO] : Generating land
+2021.04.25 09:36:36 [src.Map] [INFO] : Generating Lakes
+2021.04.25 09:36:36 [src.Map] [INFO] : Generating Jungles
+2021.04.25 09:36:36 [src.Map] [INFO] : Generating Mountains
+2021.04.25 09:36:36 [src.Map] [INFO] : Generating Caves
+2021.04.25 09:36:36 [src.Map] [INFO] : Generating Villages
+2021.04.25 09:36:36 [src.Map] [INFO] : Generating Altars

@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.logging.Level;
 
 public enum Items {
+	Empty("Default", 0, 0, false),
 	Chocolate("Chocolate", 15, 20, false),
 	Drug("Drug", 40, 20, true),
 	Fruit("Fruit", 20, 15, false),

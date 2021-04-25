@@ -28,4 +28,12 @@ public class Item {
 	public boolean isAddictive() {
 		return isAddictive;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Items getType() {
+		return type;
+	}
 }

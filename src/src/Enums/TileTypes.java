@@ -12,11 +12,13 @@ public enum TileTypes {
 	GRASS,
 	VILLAGE,
 	VOLCANO,
-	GEYSER;
+	GEYSER,
+	DOCK;
 
 	public String getValue(TileTypes tile) {
 		switch (tile) {
 			case SEA -> { return "🌊"; }
+			case DOCK -> { return "⚓"; }
 			case CAVE -> { return "🕳"; }
 			case LAKE -> { return "♒"; }
 			case ALTAR -> { return "⛩"; }
