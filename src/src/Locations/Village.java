@@ -19,24 +19,11 @@ public class Village {
 		this.crew = crew;
 
 		fillCrew();
-		fillInv();
+		inv.fillInv();
 	}
 
 	private void fillCrew() {
 		crew.addCrewMember(new NPC(src.Enums.NPC.SHAMAN, Names.randomName()));
-	}
-
-	private void fillInv() {
-		Random r = new Random();
-		int amountOfItems = new Random().NextRandom(0, 6);
-		int[] counts = new int[amountOfItems];
-		Item item;
-
-		for (int i = 0; i < counts.length; i++) {
-			counts[i] = r.NextRandom(0, 6);
-			item = new Item(Items.getRandom());
-			inv.addItem(item, counts[i]);
-		}
 	}
 
 	public int getRelation() {

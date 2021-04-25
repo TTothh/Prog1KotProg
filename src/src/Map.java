@@ -34,7 +34,7 @@ public class Map {
 		GenerateVillages();
 		GenerateAltars();
 		GeneratePyramid();
-		GenerateDock();
+		GenerateDockandShip();
 	}
 
 	private void GenerateSea() {
@@ -58,7 +58,7 @@ public class Map {
 
 			for (int j = 0; j < WIDTH; j++) {
 				if (j >= current.x) {
-					tiles[i][j] = new MapTile(false, false, true, TileTypes.GRASS);
+					tiles[i][j] = new MapTile(false, false, true, TileTypes.GRASS, "Grass.png");
 				}
 			}
 
@@ -81,13 +81,18 @@ public class Map {
 
 		for (int i = 0; i < noLakes; i++) {
 			curr = getNewValidCoords(isAllowedOn);
-			tiles[curr.y][curr.x] = new MapTile(true, false, false, TileTypes.LAKE);
+			tiles[curr.y][curr.x] = new MapTile(true, false, false, TileTypes.LAKE, "Lake.png");
 
 			for (int j = 0; j < sizeofLakes[i]; j++) {
 				neighbours = getNeighbours(curr);
 				next = neighbours.get(r.NextRandom(0, neighbours.size() - 2));
+
+				for (int k = 0; k < neighbours.size(); k++) {
+					tiles[neighbours.get(k).y][neighbours.get(k).x].setWet(true);
+				}
+
 				try {
-					tiles[next.y][next.x] = new MapTile(true, false, false, TileTypes.LAKE);
+					tiles[next.y][next.x] = new MapTile(true, false, false, TileTypes.LAKE, "Lake.png");
 				} catch (Exception e) {
 					System.out.println(next.y + " : " + next.x);
 				}
@@ -104,7 +109,7 @@ public class Map {
 
 		for (int i = 0; i < noMountains; i++) {
 			newMountain = getNewValidCoords(isAllowedOn);
-			tiles[newMountain.y][newMountain.x] = new MapTile(false, false, false, TileTypes.MOUNTAIN);
+			tiles[newMountain.y][newMountain.x] = new MapTile(false, false, false, TileTypes.MOUNTAIN, "Mountain_0.png");
 		}
 	}
 
@@ -116,7 +121,7 @@ public class Map {
 
 		for (int i = 0; i < noCaves; i++) {
 			newCave = getNewValidCoords(isAllowedOn);
-			tiles[newCave.y][newCave.x] = new MapTile(false, false, true, TileTypes.CAVE);
+			tiles[newCave.y][newCave.x] = new MapTile(false, false, true, TileTypes.CAVE, "Cave.png");
 		}
 	}
 
@@ -129,7 +134,7 @@ public class Map {
 
 		for (int i = 0; i < noAltars; i++) {
 			newCave = getNewValidCoords(isAllowedOn);
-			tiles[newCave.y][newCave.x] = new MapTile(false, false, true, TileTypes.ALTAR);
+			tiles[newCave.y][newCave.x] = new MapTile(false, false, true, TileTypes.ALTAR, "Altar.png");
 		}
 	}
 
@@ -148,7 +153,7 @@ public class Map {
 
 		for (int i = 0; i < noJungles; i++) {
 			curr = getNewValidCoords(isAllowedOn);
-			tiles[curr.y][curr.x] = new MapTile(true, false, true, TileTypes.JUNGLE);
+			tiles[curr.y][curr.x] = new MapTile(true, false, true, TileTypes.JUNGLE, "Jungle.png");
 
 			for (int j = 0; j < sizeofJungles[i]; j++) {
 				neighbours = getNeighbours(curr);
@@ -158,7 +163,7 @@ public class Map {
 					System.out.println("dsa");
 				}
 				try {
-					tiles[next.y][next.x] = new MapTile(true, false, true, TileTypes.JUNGLE);
+					tiles[next.y][next.x] = new MapTile(true, false, true, TileTypes.JUNGLE, "Jungle.png");
 				} catch (Exception e) {
 					System.out.println(next.y + " : " + next.x);
 				}
@@ -182,13 +187,13 @@ public class Map {
 
 		for (int i = 0; i < noVillages; i++) {
 			curr = getNewValidCoords(isAllowedOn);
-			tiles[curr.y][curr.x] = new MapTile(true, false, true, TileTypes.VILLAGE);
+			tiles[curr.y][curr.x] = new MapTile(true, false, true, TileTypes.VILLAGE, "Village.png");
 
 			for (int j = 0; j < sizeofVillages[i]; j++) {
 				neighbours = getNeighbours(curr);
 				next = neighbours.get(r.NextRandom(0, neighbours.size() - 2));
 				try {
-					tiles[next.y][next.x] = new MapTile(true, false, true, TileTypes.VILLAGE);
+					tiles[next.y][next.x] = new MapTile(true, false, true, TileTypes.VILLAGE, "Village.png");
 				} catch (Exception e) {
 					System.out.println(next.y + " : " + next.x);
 				}
@@ -200,16 +205,17 @@ public class Map {
 	private void GeneratePyramid() {
 		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.JUNGLE, TileTypes.LAKE, TileTypes.VILLAGE));
 		Point pyramid = getNewValidCoords(isAllowedOn);
-		tiles[pyramid.y][pyramid.x] = new MapTile(false, false, true, TileTypes.GOLDENPYRAMID);
+		tiles[pyramid.y][pyramid.x] = new MapTile(false, false, true, TileTypes.GOLDENPYRAMID, "GoldenPyramid.png");
 	}
 
-	private void GenerateDock() {
+	private void GenerateDockandShip() {
 		Point pos = new Point(r.NextRandom(0, HEIGHT - 1), 0);
 
 loop:
 		for (int j = 0; j < WIDTH; j++) {
 			if (tiles[pos.x][j].getType() != TileTypes.SEA) {
-				tiles[pos.x][j] = new MapTile(false, true, true, TileTypes.DOCK);
+				tiles[pos.x][j] = new MapTile(false, true, true, TileTypes.DOCK, "Dock.png");
+				tiles[pos.x][j - 1] = new MapTile(false, true, true, TileTypes.PLAYERSHIP, "Ship.png");
 				break loop;
 			}
 		}

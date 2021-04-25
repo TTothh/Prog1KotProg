@@ -2,6 +2,8 @@ package src.InventoryManagement;
 
 import src.Enums.Items;
 import src.Items.Item;
+import src.JavaReImplementations.Random;
+
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -74,6 +76,19 @@ public class Inventory {
 			}
 		} else {
 			System.out.println("Not enough space in inventory");
+		}
+	}
+
+	public void fillInv() {
+		Random r = new Random();
+		int amountOfItems = new Random().NextRandom(0, 6);
+		int[] counts = new int[amountOfItems];
+		Item item;
+
+		for (int i = 0; i < counts.length; i++) {
+			counts[i] = r.NextRandom(0, 6);
+			item = new Item(Items.getRandom());
+			addItem(item, counts[i]);
 		}
 	}
 
