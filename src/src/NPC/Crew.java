@@ -13,12 +13,12 @@ public class Crew {
 	}
 
 	public void addCrewMember(NPC member) {
-		if(Crew.size() < size) {
+		if (Crew.size() < size) {
 			Crew.add(member);
 		}
 	}
 
-	public void dismissCrewMember(UUID uuid) {
+	public void removeCrewMember(UUID uuid) {
 		Crew.removeIf(npc -> npc.getUuid() == uuid);
 	}
 }

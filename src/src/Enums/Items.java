@@ -1,11 +1,7 @@
 package src.Enums;
 
 import src.Logging;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 
 public enum Items {
@@ -24,6 +20,10 @@ public enum Items {
 	private static final Map<Integer, Items> itemPrice = new HashMap<>();
 	private static final Map<Integer, Items> itemEnergy = new HashMap<>();
 	private static final Map<Boolean, Items> itemIsAddictive = new HashMap<>();
+
+	private static final List<Items> VALUES = List.of(values());
+	private static final int SIZE = VALUES.size();
+	private static final Random RANDOM = new Random();
 
 	static {
 		for (Items i : values()) {
@@ -61,6 +61,9 @@ public enum Items {
 		return results;
 	}
 
+	public static Items getRandom()  {
+		return VALUES.get(RANDOM.nextInt(SIZE));
+	}
 	/*public static Items getName(String name) {
 		Items result = itemName.get(name);
 		if (result == null) {

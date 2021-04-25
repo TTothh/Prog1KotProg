@@ -13,11 +13,12 @@ public class NPC {
 	private Item addiction;
 	private src.Enums.NPC type;
 	private Item[] consumed = new Item[2];
-	private UUID uuid = UUID.randomUUID();
+	private UUID uuid;
 
 	public NPC(src.Enums.NPC type, String name) {
 		this.type = type;
 		this.name = name;
+		uuid = UUID.randomUUID();
 	}
 
 	public void consume(Stack stack, Item item) {
