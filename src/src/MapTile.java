@@ -22,28 +22,15 @@ public class MapTile {
 	private TileTypes type;
 	private Image sprite;
 
-	public Image drawMaptile(TileTypes type) throws IOException {
-		//BufferedImage tile = new BufferedImage(SIZE, SIZE, BufferedImage.TYPE_4BYTE_ABGR);
-		BufferedImage tile;
-		try {
-			tile = ImageIO.read(new File(("src/Assets/Tiles/" + type + ".png")));
-		} catch (IOException e) {
-			tile = ImageIO.read(new File(("src/Assets/Tiles/MissingTexture.png")));
-			Logging.Log(type + ".png not found", "Logs/mainLog.log", Class.class.getName(), Level.WARNING);
-		}
-
-		return tile;
-	}
-
 	public MapTile() {
 		this.isWet = true;
 		this.isVisible = false;
 		this.type = TileTypes.SEA;
 		this.isWalkable = false;
-		if(Files.exists(Paths.get("src/Assets/Tiles/Sea.png"))) {
-			this.sprite = new ImageIcon("src/Assets/Tiles/Sea.png").getImage();
+		if(Files.exists(Paths.get("src/src/Assets/Tiles/Sea.png"))) {
+			this.sprite = new ImageIcon("src/src/Assets/Tiles/Sea.png").getImage();
 		} else {
-			this.sprite = new ImageIcon("src/Assets/Tiles/MissingTexture.png").getImage();
+			this.sprite = new ImageIcon("src/src/Assets/Tiles/MissingTexture.png").getImage();
 		}
 	}
 
@@ -52,12 +39,17 @@ public class MapTile {
 		this.isVisible = isVisible;
 		this.type = type;
 		this.isWalkable = isWalkable;
-		String image = "src/Assets/Tiles/" + texture;
 
-		if(Files.exists(Paths.get(image))) {
-			this.sprite = new ImageIcon(image).getImage();
+		String image = "src/src/Assets/Tiles/" + texture;
+		String unknown = "src/src/Assets/Tiles/MissingTexture.png";
+
+		Path img = Paths.get(image).toAbsolutePath();
+		Path missing = Paths.get(unknown).toAbsolutePath();
+
+		if(Files.exists(img)) {
+			this.sprite = new ImageIcon(String.valueOf(img)).getImage();
 		} else {
-			this.sprite = new ImageIcon("src/Assets/Tiles/MissingTexture.png").getImage();
+			this.sprite = new ImageIcon((Image) missing).getImage();
 		}
 	}
 
@@ -83,5 +75,9 @@ public class MapTile {
 
 	public void setType(TileTypes type) {
 		this.type = type;
+	}
+
+	public Image getSprite() {
+		return sprite;
 	}
 }

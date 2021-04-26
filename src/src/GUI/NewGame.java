@@ -1,7 +1,7 @@
 package src.GUI;
 
+import src.BoardManager;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 
 public class NewGame extends MenuButton{
 	public NewGame(String text) {
@@ -10,6 +10,7 @@ public class NewGame extends MenuButton{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		BoardManager.draw();
 		new GameScreen();
 	}
 }

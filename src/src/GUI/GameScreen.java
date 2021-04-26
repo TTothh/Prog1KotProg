@@ -1,11 +1,12 @@
 package src.GUI;
 
+
 import javax.swing.*;
 import java.awt.*;
 
 public class GameScreen extends JFrame {
 	public GameScreen() {
-		setTitle("The Peculiar Expedition");
+		setTitle("The Peculiar Expeditionasd");
 		setSize(50*32, 30*32);
 		setLayout(null);
 		setVisible(true);
@@ -14,5 +15,6 @@ public class GameScreen extends JFrame {
 
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
+		//g2d.drawImage(Game.LoadMap(), 50 * 32, 50 * 32, null);
 	}
 }

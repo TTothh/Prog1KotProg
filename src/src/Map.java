@@ -221,6 +221,10 @@ loop:
 		}
 	}
 
+	public MapTile[][] getTiles() {
+		return this.tiles;
+	}
+
 	private Point getNewValidCoords(ArrayList<TileTypes> allowedtiles) {
 		Point curr = new Point(0, 0);
 
@@ -261,6 +265,14 @@ loop:
 		}
 
 		return nbs;
+	}
+
+	public int getWIDTH() {
+		return WIDTH;
+	}
+
+	public int getHEIGHT() {
+		return HEIGHT;
 	}
 
 	@Override
