@@ -1,6 +1,8 @@
 package src.GUI;
 
 import src.BoardManager;
+import src.Game;
+
 import java.awt.event.ActionEvent;
 
 public class NewGame extends MenuButton{

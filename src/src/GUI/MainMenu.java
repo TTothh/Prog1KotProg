@@ -9,7 +9,7 @@ public class MainMenu extends JFrame {
 		NewGame ng = new NewGame("New Game");
 
 		setTitle("The Peculiar Expedition");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setResizable(false);
 		setSize(420, 420);
 		setVisible(true);

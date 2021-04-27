@@ -4,6 +4,10 @@ import src.InventoryManagement.Stack;
 import src.Items.Item;
 import src.JavaReImplementations.Random;
 
+import javax.swing.*;
+import java.awt.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.UUID;
 
 public class NPC {
@@ -15,11 +19,18 @@ public class NPC {
 	private Item[] consumed = new Item[2];
 	private UUID uuid;
 	private boolean isHurt = false;
+	private Image sprite;
 
 	public NPC(src.Enums.NPC type, String name) {
 		this.type = type;
 		this.name = name;
 		uuid = UUID.randomUUID();
+
+		if(Files.exists(Path.of("src/src/Assets/Player/" + type + ".png"))) {
+			sprite = new ImageIcon("src/src/Assets/Player/" + type + ".png").getImage();
+		} else {
+			sprite = new ImageIcon("src/src/Assets/Tiles/MissingTexture.png").getImage();
+		}
 	}
 
 	public boolean leave() {

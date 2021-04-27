@@ -2,18 +2,24 @@ package src;
 
 import src.Enums.TileTypes;
 import src.JavaReImplementations.Random;
+import src.Locations.*;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.logging.Level;
 
 
 public class Map {
-	private int WIDTH;
-	private int HEIGHT;
+	private final int WIDTH;
+	private final int HEIGHT;
 
-	private MapTile[][] tiles;
+	private final MapTile[][] tiles;
+
+	private final HashMap<Point, Altar> altars = new HashMap<>();
+	private final HashMap<Point, Village> villages = new HashMap<>();
 
 	Random r = new Random();
 
@@ -34,6 +40,7 @@ public class Map {
 		GenerateVillages();
 		GenerateAltars();
 		GeneratePyramid();
+		GenerateWet();
 		GenerateDockandShip();
 	}
 
@@ -73,7 +80,7 @@ public class Map {
 		Point curr;
 		Point next;
 		ArrayList<Point> neighbours;
-		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS));
+		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Collections.singletonList(TileTypes.GRASS));
 
 		for (int i = 0; i < noLakes; i++) {
 			sizeofLakes[i] = r.NextRandom(5, 13);
@@ -86,10 +93,6 @@ public class Map {
 			for (int j = 0; j < sizeofLakes[i]; j++) {
 				neighbours = getNeighbours(curr);
 				next = neighbours.get(r.NextRandom(0, neighbours.size() - 2));
-
-				for (int k = 0; k < neighbours.size(); k++) {
-					tiles[neighbours.get(k).y][neighbours.get(k).x].setWet(true);
-				}
 
 				try {
 					tiles[next.y][next.x] = new MapTile(true, false, false, TileTypes.LAKE, "Lake.png");
@@ -125,16 +128,16 @@ public class Map {
 		}
 	}
 
-
 	private void GenerateAltars() {
 		Logging.Log("Generating Altars", "Setup.log", getClass().getName(), Level.INFO);
 		int noAltars = r.NextRandom(3, 13);
 		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS, TileTypes.JUNGLE));
-		Point newCave;
+		Point newAltar;
 
 		for (int i = 0; i < noAltars; i++) {
-			newCave = getNewValidCoords(isAllowedOn);
-			tiles[newCave.y][newCave.x] = new MapTile(false, false, true, TileTypes.ALTAR, "Altar.png");
+			newAltar = getNewValidCoords(isAllowedOn);
+			tiles[newAltar.y][newAltar.x] = new MapTile(false, false, true, TileTypes.ALTAR, "Altar.png");
+			altars.put(new Point(newAltar.x, newAltar.y), new Altar());
 		}
 	}
 
@@ -145,7 +148,7 @@ public class Map {
 		Point curr;
 		Point next = new Point(0, 0);
 		ArrayList<Point> neighbours;
-		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.GRASS));
+		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Collections.singletonList(TileTypes.GRASS));
 
 		for (int i = 0; i < noJungles; i++) {
 			sizeofJungles[i] = r.NextRandom(20, 30);
@@ -194,7 +197,9 @@ public class Map {
 				next = neighbours.get(r.NextRandom(0, neighbours.size() - 2));
 				try {
 					tiles[next.y][next.x] = new MapTile(true, false, true, TileTypes.VILLAGE, "Village.png");
+					villages.put(new Point(next.x, next.y), new Village(2));
 				} catch (Exception e) {
+					e.printStackTrace();
 					System.out.println(next.y + " : " + next.x);
 				}
 				curr = next;
@@ -206,6 +211,7 @@ public class Map {
 		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.JUNGLE, TileTypes.LAKE, TileTypes.VILLAGE));
 		Point pyramid = getNewValidCoords(isAllowedOn);
 		tiles[pyramid.y][pyramid.x] = new MapTile(false, false, true, TileTypes.GOLDENPYRAMID, "GoldenPyramid.png");
+		new Pyramid(new Point(pyramid.x, pyramid.y));
 	}
 
 	private void GenerateDockandShip() {
@@ -216,13 +222,31 @@ loop:
 			if (tiles[pos.x][j].getType() != TileTypes.SEA) {
 				tiles[pos.x][j] = new MapTile(false, true, true, TileTypes.DOCK, "Dock.png");
 				tiles[pos.x][j - 1] = new MapTile(false, true, true, TileTypes.PLAYERSHIP, "Ship.png");
+
+				new Dock(new Point(pos.x, j));
+				Player.setPosition(new Point(pos.x, j));
+				new PlayerShip(new Point(pos.x, (j - 1)));
 				break loop;
 			}
 		}
 	}
 
-	public MapTile[][] getTiles() {
-		return this.tiles;
+	private void GenerateWet() {
+		ArrayList<Point> neighbours;
+
+		for (int i = 0; i < HEIGHT; i++) {
+			for (int j = 0; j < WIDTH; j++) {
+				if (tiles[i][j].getType() == TileTypes.LAKE) {
+					neighbours = getNeighbours(new Point(j, i));
+
+					for (Point neighbour : neighbours) {
+						if (tiles[neighbour.y][neighbour.x].getType() != TileTypes.LAKE) {
+							tiles[neighbour.y][neighbour.x].setWet(true);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	private Point getNewValidCoords(ArrayList<TileTypes> allowedtiles) {
@@ -252,8 +276,6 @@ loop:
 					continue;
 				}
 
-				//nbs.add(new Point(j, i));
-				//Fix this if I don't fuck with the generation anymore
 				try {
 					if (tiles[i][j].getType() != TileTypes.SEA) {
 						nbs.add(new Point(j, i));
@@ -263,7 +285,6 @@ loop:
 				}
 			}
 		}
-
 		return nbs;
 	}
 
@@ -273,6 +294,18 @@ loop:
 
 	public int getHEIGHT() {
 		return HEIGHT;
+	}
+
+	public MapTile[][] getTiles() {
+		return this.tiles;
+	}
+
+	public HashMap<Point, Altar> getAltars() {
+		return altars;
+	}
+
+	public HashMap<Point, Village> getVillages() {
+		return villages;
 	}
 
 	@Override

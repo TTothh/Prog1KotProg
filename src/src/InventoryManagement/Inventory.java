@@ -47,41 +47,50 @@ public class Inventory {
 	private boolean canAdd(Item item, int amount) {
 		int freespace = 0;
 		for (Stack stack : inventory) {
-			if(stack.getSize() == 0 || stack.getType() == Items.Empty) {
-				freespace += 7;
+			if (freespace >= amount) {
+				return true;
 			}
+
+			if (stack.getSize() == 0 || stack.getType() == Items.Empty) {
+				freespace += 7;
+				continue;
+			}
+
 			if (stack.getType() == item.getType()) {
 				freespace += 7 - stack.getSize();
 			}
 		}
 
-		return freespace >= amount;
+		return false;
 	}
 
 	public void addItem(Item item, int amount) {
 		int remaining = amount;
 
-		if(canAdd(item, amount)) {
-			while (remaining > 0) {
-				for (Stack stack : inventory) {
-					if (stack.getType() == item.getType() || stack.getType() == Items.Empty) {
-						if(stack.getType() == Items.Empty) {
+		if (canAdd(item, amount)) {
+			for (Stack stack : inventory) {
+				if(remaining > 0) {
+					if (stack.getType() == item.getType() || (stack.getType() == Items.Empty)) {
+						if (stack.getType() == Items.Empty) {
 							stack.setType(item.getType());
 						}
 						int deduct = Math.min(stack.amountCanBeAdded(), remaining);
 						stack.addItem(deduct);
 						remaining -= deduct;
 					}
+				} else {
+					break;
 				}
 			}
 		} else {
 			System.out.println("Not enough space in inventory");
 		}
+		update();
 	}
 
 	public void fillInv() {
 		Random r = new Random();
-		int amountOfItems = new Random().NextRandom(0, 6);
+		int amountOfItems = new Random().NextRandom(1, 6);
 		int[] counts = new int[amountOfItems];
 		Item item;
 
@@ -90,12 +99,14 @@ public class Inventory {
 			item = new Item(Items.getRandom());
 			addItem(item, counts[i]);
 		}
+
+		update();
 	}
 
 	//I don't need this. Theoretically
 	public boolean hasEmpty() {
 		for (Stack stack : inventory) {
-			if(stack.getType() == Items.Empty) {
+			if (stack.getType() == Items.Empty) {
 				return true;
 			}
 		}
@@ -105,6 +116,8 @@ public class Inventory {
 
 	public void removeItem(Stack stack, int amount) {
 		stack.removeItem(amount);
+
+		update();
 	}
 
 	public int getSize() {

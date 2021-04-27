@@ -17,20 +17,20 @@ public enum TileTypes {
 
 	public String getValue(TileTypes tile) {
 		switch (tile) {
-			case SEA -> { return "🌊"; }
-			case DOCK -> { return "⚓"; }
-			case CAVE -> { return "🕳"; }
-			case LAKE -> { return "♒"; }
-			case ALTAR -> { return "⛩"; }
-			case GRASS -> { return "🟩"; }
-			case GEYSER -> { return "🏔"; }
-			case JUNGLE -> { return "🌳"; }
-			case VOLCANO -> { return "🌋"; }
-			case VILLAGE -> { return "⛪"; }
-			case MOUNTAIN -> { return "🗻"; }
-			case PLAYERSHIP -> { return "🚢"; }
-			case GOLDENPYRAMID -> { return "🛕"; }
-			default -> { return "🅱"; }
+			case SEA -> { return "sea"; }
+			case DOCK -> { return "dock"; }
+			case CAVE -> { return "cave"; }
+			case LAKE -> { return "lake"; }
+			case ALTAR -> { return "altar"; }
+			case GRASS -> { return "grass"; }
+			case GEYSER -> { return "geyser"; }
+			case JUNGLE -> { return "jungle"; }
+			case VOLCANO -> { return "volcano"; }
+			case VILLAGE -> { return "village"; }
+			case MOUNTAIN -> { return "mountain"; }
+			case PLAYERSHIP -> { return "Ship"; }
+			case GOLDENPYRAMID -> { return "goldenpyramid"; }
+			default -> { return "missingtexture"; }
 		}
 	}
 }

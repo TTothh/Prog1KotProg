@@ -10,11 +10,7 @@ public class Main {
 	public static final int SCREENHEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
 
 	public static void main(String[] args) {
-		//ArrayList<Map> expeditions = new ArrayList<Map>();
-		//Map map = new Map(50, 30);
-		//map.Generate();
-		//System.out.println(map);
-
-		Game.Init();
+		Game game = new Game();
+		game.Init();
 	}
 }
