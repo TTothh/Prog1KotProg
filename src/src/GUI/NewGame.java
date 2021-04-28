@@ -13,6 +13,6 @@ public class NewGame extends MenuButton{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		BoardManager.draw();
-		new GameScreen();
+		new GameScreen().Init();
 	}
 }

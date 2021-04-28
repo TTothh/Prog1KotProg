@@ -96,4 +96,20 @@ public class NPC {
 	public UUID getUuid() {
 		return uuid;
 	}
+
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
+
+	public void setHurt(boolean hurt) {
+		isHurt = hurt;
+	}
+
+	public Image getSprite() {
+		return sprite;
+	}
+
+	public void setSprite(Image sprite) {
+		this.sprite = sprite;
+	}
 }

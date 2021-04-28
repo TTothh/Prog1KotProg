@@ -2,6 +2,7 @@ package src;
 
 import src.GUI.MainMenu;
 import src.Locations.*;
+import src.NPC.Crew;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -20,6 +21,7 @@ public class Game {
 	private Point pyramid;
 	private Point ship;
 	private Point dock;
+	private static int turn = 0;
 
 	public void GenerateMap() {
 		Map map = new Map(50, 30);
@@ -42,6 +44,7 @@ public class Game {
 	public void Init() {
 		GenerateMap();
 		Player.setPosition(new Point(Dock.getPosition().y, Dock.getPosition().x));
+		Player.setCrew(new Crew(3));
 		new MainMenu();
 	}
 
@@ -51,5 +54,13 @@ public class Game {
 
 	public static int getCurrentmap() {
 		return currentmap;
+	}
+
+	public static int getTurn() {
+		return turn;
+	}
+
+	public static void setTurn(int turn) {
+		Game.turn = turn;
 	}
 }

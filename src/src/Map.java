@@ -4,7 +4,9 @@ import src.Enums.TileTypes;
 import src.JavaReImplementations.Random;
 import src.Locations.*;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -48,7 +50,7 @@ public class Map {
 		Logging.Log("Generating sea", "Setup.log", this.getClass().getName(), Level.INFO);
 		for (int i = 0; i < HEIGHT; i++) {
 			for (int j = 0; j < WIDTH; j++) {
-				tiles[i][j] = new MapTile();
+				tiles[i][j] = new MapTile(true, true, false, TileTypes.SEA, "Sea.png");
 			}
 		}
 	}
@@ -162,13 +164,11 @@ public class Map {
 				neighbours = getNeighbours(curr);
 				try {
 					next = neighbours.get(r.NextRandom(0, neighbours.size() - 2));
-				} catch (Exception e) {
-					System.out.println("dsa");
+				} catch (Exception ignored) {
 				}
 				try {
 					tiles[next.y][next.x] = new MapTile(true, false, true, TileTypes.JUNGLE, "Jungle.png");
-				} catch (Exception e) {
-					System.out.println(next.y + " : " + next.x);
+				} catch (Exception ignored) {
 				}
 				curr = next;
 			}
@@ -198,9 +198,7 @@ public class Map {
 				try {
 					tiles[next.y][next.x] = new MapTile(true, false, true, TileTypes.VILLAGE, "Village.png");
 					villages.put(new Point(next.x, next.y), new Village(2));
-				} catch (Exception e) {
-					e.printStackTrace();
-					System.out.println(next.y + " : " + next.x);
+				} catch (Exception ignored) {
 				}
 				curr = next;
 			}
@@ -240,11 +238,31 @@ loop:
 					neighbours = getNeighbours(new Point(j, i));
 
 					for (Point neighbour : neighbours) {
-						if (tiles[neighbour.y][neighbour.x].getType() != TileTypes.LAKE) {
+						MapTile curr = tiles[neighbour.y][neighbour.x];
+						if (curr.isWalkable()) {
 							tiles[neighbour.y][neighbour.x].setWet(true);
+							System.out.println(tiles[neighbour.y][neighbour.x].getSpritepath());
 						}
 					}
 				}
+			}
+		}
+	}
+
+	public void RevealMap() {
+		Point center = Player.getPosition();
+		MapTile curr;
+		for (int i = center.y - Player.getFow(); i < center.y + Player.getFow(); i++) {
+			if (i < 0 || i == HEIGHT) {
+				continue;
+			}
+			for (int j = center.x - Player.getFow(); j < center.x + Player.getFow(); j++) {
+				if (j < 0 || j == WIDTH) {
+					continue;
+				}
+
+				curr = tiles[i][j];
+				curr.setSprite(new ImageIcon(curr.getSpritepath()).getImage());
 			}
 		}
 	}
@@ -257,8 +275,7 @@ loop:
 				curr.x = r.NextRandom(0, WIDTH - 1);
 				curr.y = r.NextRandom(0, HEIGHT - 1);
 			}
-		} catch (Exception e) {
-			System.out.println("asd");
+		} catch (Exception ignored) {
 		}
 
 		return curr;

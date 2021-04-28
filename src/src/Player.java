@@ -11,8 +11,8 @@ public class Player {
 	private static int energy = 100;
 	private static int maxInvSize = 8;
 	private static Inventory inv;
-	private static Crew[] crew;
-	private static int fow = 8;
+	private static Crew crew;
+	private static int fow = 2;
 	private static Point position;
 	private static Image sprite = new ImageIcon("src/src/Assets/Player/player.png").getImage();
 
@@ -48,11 +48,11 @@ public class Player {
 		Player.inv = inv;
 	}
 
-	public static Crew[] getCrew() {
+	public static Crew getCrew() {
 		return crew;
 	}
 
-	public static void setCrew(Crew[] crew) {
+	public static void setCrew(Crew crew) {
 		Player.crew = crew;
 	}
 
