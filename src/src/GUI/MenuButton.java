@@ -4,11 +4,18 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Menubutton interface. ebből származik mindkét gomb a főmenün
+ */
 public abstract class MenuButton extends JButton implements ActionListener{
 	private int x;
 	private int y;
 	private int width = 200;
 	private int height = 50;
+
+	/**
+	 * KOntruktor
+	 */
 
 	public MenuButton(String text) {
 		super(text);

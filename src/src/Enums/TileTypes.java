@@ -1,5 +1,8 @@
 package src.Enums;
 
+/**
+ * A mapokon előforduló mezőtípusok
+ */
 public enum TileTypes {
 	SEA,
 	PLAYERSHIP,
@@ -15,21 +18,26 @@ public enum TileTypes {
 	GEYSER,
 	DOCK;
 
-	public String getValue(TileTypes tile) {
+	/**
+	 * A typushoz tartozó kódokkal tér vissza
+	 * @param tile
+	 * @return INteger a typushoz tartozó kód
+	 */
+	public static String getValue(TileTypes tile) {
 		switch (tile) {
-			case SEA -> { return "sea"; }
-			case DOCK -> { return "dock"; }
-			case CAVE -> { return "cave"; }
-			case LAKE -> { return "lake"; }
-			case ALTAR -> { return "altar"; }
-			case GRASS -> { return "grass"; }
-			case GEYSER -> { return "geyser"; }
-			case JUNGLE -> { return "jungle"; }
-			case VOLCANO -> { return "volcano"; }
-			case VILLAGE -> { return "village"; }
-			case MOUNTAIN -> { return "mountain"; }
-			case PLAYERSHIP -> { return "Ship"; }
-			case GOLDENPYRAMID -> { return "goldenpyramid"; }
+			case SEA -> { return "a"; }
+			case DOCK -> { return "b"; }
+			case CAVE -> { return "c"; }
+			case LAKE -> { return "d"; }
+			case ALTAR -> { return "e"; }
+			case GRASS -> { return "f"; }
+			case GEYSER -> { return "g"; }
+			case JUNGLE -> { return "h"; }
+			case VOLCANO -> { return "i"; }
+			case VILLAGE -> { return "j"; }
+			case MOUNTAIN -> { return "k"; }
+			case PLAYERSHIP -> { return "l"; }
+			case GOLDENPYRAMID -> { return "m"; }
 			default -> { return "missingtexture"; }
 		}
 	}

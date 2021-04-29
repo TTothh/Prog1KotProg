@@ -1,5 +1,6 @@
 package src.GUI;
 
+import src.Enums.NPC;
 import src.GUI.Screen.CrewScreen;
 import src.GUI.Screen.StatScreen;
 import src.Game;
@@ -12,7 +13,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
+/**
+ * Maga a játék ablaka. Ezen van minden grafikus elem
+ */
 public class GameScreen extends JFrame implements KeyListener {
 	static PlayerController pc = new PlayerController();
 
@@ -24,16 +30,26 @@ public class GameScreen extends JFrame implements KeyListener {
 	public GameScreen() {
 	}
 
+	/**
+	 * A játék elején beállítja a szükséges dolgokat
+	 */
 	public void Init() {
+		screen.remove(map);
+		screen.remove(player);
+		screen.remove(stats);
+		remove(screen);
+		repaint();
+		revalidate();
+
 		addKeyListener(this);
 
 		setTitle("The Peculiar Expedition");
-		setSize(50 * 32, (30 * 32) + 100);
+		setSize(50 * 32 + 30, (30 * 32) + 100);
 		setLayout(null);
 
-		screen.setBounds(0, 0, 50 * 32, (30 * 32) + 100);
+		screen.setBounds(0, 0, 50 * 32 + 20, (30 * 32) + 100);
 
-		map.setBounds(0, 0, 50 * 32, 30 * 32);
+		map.setBounds(0, 0, 50 * 32 + 30, 30 * 32);
 		map.setOpaque(true);
 
 		player.setBackground(new Color(0, 0, 0, 0));
@@ -52,13 +68,19 @@ public class GameScreen extends JFrame implements KeyListener {
 		Game.getExpeditions().get(Game.getCurrentmap()).RevealMap();
 		map.setIcon(new ImageIcon(Game.LoadMap()));
 
-		new CrewScreen(new Crew(3));
+		newCrewScreen();
 	}
 
+	public static void newCrewScreen() {
+		new CrewScreen(new Crew(3), new ArrayList<>(Arrays.asList(NPC.TRADER, NPC.SOLDIER, NPC.DONKEY)));
+	}
+
+	/**
+	 * kirajzolja a map-ot a játékost és a statokat az elején
+	 */
 	public void draw() {
 		screen.remove(player);
 		screen.remove(map);
-		//screen.remove(stats);
 
 		validate();
 		repaint();
@@ -67,14 +89,10 @@ public class GameScreen extends JFrame implements KeyListener {
 		player.setIcon(new ImageIcon(Player.getSprite()));
 		player.setLocation(Player.getPosition());
 
-		stats.update();
+		StatScreen.update();
 
-		//screen.add(stats);
 		screen.add(player);
 		screen.add(map);
-
-		//stats.repaint();
-		//stats.revalidate();
 
 		screen.repaint();
 		screen.revalidate();
@@ -92,6 +110,13 @@ public class GameScreen extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 	}
+
+
+	/**
+	 *
+	 * Gombnyomásra meghívja a mozgató függvényt
+	 * @param e
+	 */
 
 	@Override
 	public void keyReleased(KeyEvent e) {

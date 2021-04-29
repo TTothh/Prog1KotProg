@@ -1,17 +1,25 @@
 package src.InventoryManagement;
 
 import src.Enums.Items;
-import src.Items.Item;
 import src.JavaReImplementations.Random;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * A játékos inventory-ja valamint annak a managelése
+ */
+
 public class Inventory {
-	private int size = 0;
+	private int size;
 	Stack[] inventory;
 	HashMap<Items, Integer> amounts = new HashMap<>();
 
+	/**
+	 * Kontruktor. új inventry inicializál a megadott méretben
+	 *
+	 * @param size
+	 */
 	public Inventory(int size) {
 		this.size = size;
 		inventory = new Stack[this.size];
@@ -21,12 +29,27 @@ public class Inventory {
 		update();
 	}
 
+	public Stack getSlot(int index) {
+		return inventory[index];
+	}
+
+	/**
+	 * Megnöveli az inventory méretét a kapott értékkel
+	 *
+	 * @param size
+	 */
+
 	public void addSize(int size) {
 		Stack[] temp = inventory;
 		inventory = Arrays.copyOf(temp, size);
 		update();
 	}
 
+	/**
+	 * lecsökkenti az inventory méretét az adott értékkel
+	 *
+	 * @param size
+	 */
 	public void shrink(int size) {
 		Stack[] temp = inventory;
 		Stack[] newInv = new Stack[size];
@@ -37,11 +60,33 @@ public class Inventory {
 		update();
 	}
 
+	/**
+	 * Az amounts Hashmap-etz tölti fel az inventory-ban levő dolgokkal. számon tartja milyen item-ből mennyink van
+	 */
+
 	public void update() {
 		for (Stack stack : inventory) {
 			amounts.put(stack.getType(), stack.getSize());
 		}
 	}
+
+	public boolean hasItem(Items item) {
+		for (Stack stack : inventory) {
+			if (stack.getType() == item) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Visszaadja hogy van-e elég hely az inventory-ban a megadott item-nek
+	 *
+	 * @param item
+	 * @param amount
+	 * @return
+	 */
 
 	//returns if we have enough space in this inventory across stacks for the item
 	private boolean canAdd(Item item, int amount) {
@@ -64,12 +109,18 @@ public class Inventory {
 		return false;
 	}
 
+	/**
+	 * Inventory-hoz ad, elosztja a stack-ek között a dolgokat
+	 *
+	 * @param item
+	 * @param amount
+	 */
 	public void addItem(Item item, int amount) {
 		int remaining = amount;
 
 		if (canAdd(item, amount)) {
 			for (Stack stack : inventory) {
-				if(remaining > 0) {
+				if (remaining > 0) {
 					if (stack.getType() == item.getType() || (stack.getType() == Items.Empty)) {
 						if (stack.getType() == Items.Empty) {
 							stack.setType(item.getType());
@@ -88,6 +139,9 @@ public class Inventory {
 		update();
 	}
 
+	/**
+	 * random item-ekkel tölti fel az inventory-t
+	 */
 	public void fillInv() {
 		Random r = new Random();
 		int amountOfItems = new Random().NextRandom(1, 6);
@@ -103,6 +157,11 @@ public class Inventory {
 		update();
 	}
 
+	/**
+	 * ellenőrzi hogy van-e üres hely az inventory-ban. A szofisztikált design végetet viszont ez az eljárás nincs használatban
+	 *
+	 * @return
+	 */
 	//I don't need this. Theoretically
 	public boolean hasEmpty() {
 		for (Stack stack : inventory) {
@@ -110,12 +169,21 @@ public class Inventory {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
-	public void removeItem(Stack stack, int amount) {
-		stack.removeItem(amount);
+	/**
+	 * A megadott stack-ből vesz ki Item-et
+	 *
+	 * @param item
+	 * @param amount
+	 */
+	public void removeItem(Items item, int amount) {
+		for (Stack stack : inventory) {
+			if (stack.getType() == item) {
+				stack.removeItem(amount);
+			}
+		}
 
 		update();
 	}

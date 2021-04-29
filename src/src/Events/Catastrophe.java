@@ -2,6 +2,9 @@ package src.Events;
 
 import java.awt.*;
 
+/**
+ * Nincs implementálva
+ */
 public class Catastrophe {
 	Point center;
 	src.Enums.Catastrophe type;

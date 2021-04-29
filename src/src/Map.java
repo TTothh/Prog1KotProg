@@ -6,13 +6,16 @@ import src.Locations.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.logging.Level;
 
+
+/**
+ * Itt generálódik le egy térkép
+ */
 
 public class Map {
 	private final int WIDTH;
@@ -32,6 +35,10 @@ public class Map {
 		tiles = new MapTile[HEIGHT][WIDTH];
 	}
 
+	/**
+	 * A Generate{{Név}} a név típusó tile-ok generálásáért felelős.
+	 */
+
 	public void Generate() {
 		GenerateSea();
 		GenerateLandMass();
@@ -46,6 +53,9 @@ public class Map {
 		GenerateDockandShip();
 	}
 
+	/**
+	 * Tengert generál
+	 */
 	private void GenerateSea() {
 		Logging.Log("Generating sea", "Setup.log", this.getClass().getName(), Level.INFO);
 		for (int i = 0; i < HEIGHT; i++) {
@@ -55,6 +65,9 @@ public class Map {
 		}
 	}
 
+	/**
+	 * Földet generál
+	 */
 	private void GenerateLandMass() {
 		Logging.Log("Generating land", "Setup.log", getClass().getName(), Level.INFO);
 		int DELTA = 3;
@@ -75,6 +88,9 @@ public class Map {
 		}
 	}
 
+	/**
+	 * tavakat generál
+	 */
 	private void GenerateLakes() {
 		Logging.Log("Generating Lakes", "Setup.log", getClass().getName(), Level.INFO);
 		int noLakes = r.NextRandom(2, 5);
@@ -98,14 +114,16 @@ public class Map {
 
 				try {
 					tiles[next.y][next.x] = new MapTile(true, false, false, TileTypes.LAKE, "Lake.png");
-				} catch (Exception e) {
-					System.out.println(next.y + " : " + next.x);
+				} catch (Exception ignored) {
 				}
 				curr = next;
 			}
 		}
 	}
 
+	/**
+	 * Hegyek
+	 */
 	private void GenerateMountains() {
 		Logging.Log("Generating Mountains", "Setup.log", getClass().getName(), Level.INFO);
 		int noMountains = r.NextRandom(15, 28);
@@ -118,6 +136,9 @@ public class Map {
 		}
 	}
 
+	/**
+	 * Barlangok
+	 */
 	private void GenerateCaves() {
 		Logging.Log("Generating Caves", "Setup.log", getClass().getName(), Level.INFO);
 		int noCaves = r.NextRandom(6, 20);
@@ -130,6 +151,9 @@ public class Map {
 		}
 	}
 
+	/**
+	 * Oltárok
+	 */
 	private void GenerateAltars() {
 		Logging.Log("Generating Altars", "Setup.log", getClass().getName(), Level.INFO);
 		int noAltars = r.NextRandom(3, 13);
@@ -143,6 +167,9 @@ public class Map {
 		}
 	}
 
+	/**
+	 * Dzsungelek. Welcome to the Jungle!
+	 */
 	private void GenerateJungle() {
 		Logging.Log("Generating Jungles", "Setup.log", getClass().getName(), Level.INFO);
 		int noJungles = r.NextRandom(5, 10);
@@ -175,6 +202,9 @@ public class Map {
 		}
 	}
 
+	/**
+	 * Falvak.
+	 */
 	private void GenerateVillages() {
 		Logging.Log("Generating Villages", "Setup.log", getClass().getName(), Level.INFO);
 		int noVillages = r.NextRandom(10, 16);
@@ -205,6 +235,9 @@ public class Map {
 		}
 	}
 
+	/**
+	 * Az aranypiramis
+	 */
 	private void GeneratePyramid() {
 		ArrayList<TileTypes> isAllowedOn = new ArrayList<>(Arrays.asList(TileTypes.JUNGLE, TileTypes.LAKE, TileTypes.VILLAGE));
 		Point pyramid = getNewValidCoords(isAllowedOn);
@@ -212,6 +245,9 @@ public class Map {
 		new Pyramid(new Point(pyramid.x, pyramid.y));
 	}
 
+	/**
+	 * dock és mellette eggyel a hajó
+	 */
 	private void GenerateDockandShip() {
 		Point pos = new Point(r.NextRandom(0, HEIGHT - 1), 0);
 
@@ -229,6 +265,9 @@ loop:
 		}
 	}
 
+	/**
+	 * benedvesíti(͡°͜ʖ͡°) a tavak körüli területet
+	 */
 	private void GenerateWet() {
 		ArrayList<Point> neighbours;
 
@@ -241,7 +280,6 @@ loop:
 						MapTile curr = tiles[neighbour.y][neighbour.x];
 						if (curr.isWalkable()) {
 							tiles[neighbour.y][neighbour.x].setWet(true);
-							System.out.println(tiles[neighbour.y][neighbour.x].getSpritepath());
 						}
 					}
 				}
@@ -249,15 +287,19 @@ loop:
 		}
 	}
 
+	/**
+	 * A játékos körül a Játékos látókörének sugarában fedi fel a pályát
+	 */
+
 	public void RevealMap() {
 		Point center = Player.getPosition();
 		MapTile curr;
 		for (int i = center.y - Player.getFow(); i < center.y + Player.getFow(); i++) {
-			if (i < 0 || i == HEIGHT) {
+			if (i < 0 || i >= HEIGHT) {
 				continue;
 			}
 			for (int j = center.x - Player.getFow(); j < center.x + Player.getFow(); j++) {
-				if (j < 0 || j == WIDTH) {
+				if (j < 0 || j >= WIDTH) {
 					continue;
 				}
 
@@ -266,6 +308,13 @@ loop:
 			}
 		}
 	}
+
+	/**
+	 * Megad egy valid koordinátát amin lehet a tile.
+	 *
+	 * @param allowedtiles Csak azokon a tile-okon nézi a koordinátákat amik itt szerepelnek
+	 * @return
+	 */
 
 	private Point getNewValidCoords(ArrayList<TileTypes> allowedtiles) {
 		Point curr = new Point(0, 0);
@@ -280,6 +329,13 @@ loop:
 
 		return curr;
 	}
+
+	/**
+	 * Visszaadja egy koordináta minden szomszédját ami nem a tenger
+	 *
+	 * @param curr
+	 * @return
+	 */
 
 	private java.util.ArrayList<Point> getNeighbours(Point curr) {
 		ArrayList<Point> nbs = new ArrayList<>();
@@ -297,8 +353,7 @@ loop:
 					if (tiles[i][j].getType() != TileTypes.SEA) {
 						nbs.add(new Point(j, i));
 					}
-				} catch (Exception e) {
-					System.out.println(i + " : " + j);
+				} catch (Exception ignored) {
 				}
 			}
 		}
@@ -325,13 +380,18 @@ loop:
 		return villages;
 	}
 
+	/**
+	 * Konzolos kiírás. Nem használom.
+	 *
+	 * @return
+	 */
 	@Override
 	public String toString() {
 		StringBuilder out = new StringBuilder();
 
 		for (int i = 0; i < HEIGHT; i++) {
 			for (int j = 0; j < WIDTH; j++) {
-				out.append(tiles[i][j].getType().getValue(tiles[i][j].getType())).append("\t"); //Jank, but working. src.Enums in Java suck
+				out.append(TileTypes.getValue(tiles[i][j].getType())).append("\t"); //Jank, but working. src.Enums in Java suck
 			}
 			out.append("\n");
 		}

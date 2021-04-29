@@ -2,14 +2,13 @@ package src;
 
 import src.GUI.MainMenu;
 
-import java.awt.*;
-import java.util.ArrayList;
-
 public class Main {
-	public static final int SCREENWIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-	public static final int SCREENHEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
-
+	/**
+	 * A Game.Init beállítja az alapdolgokat és generálja az főmenüt
+	 *
+	 */
 	public static void main(String[] args) {
+		new MainMenu();
 		Game game = new Game();
 		game.Init();
 	}

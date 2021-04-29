@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"src"},{"l":"src.Enums"},{"l":"src.Events"},{"l":"src.GUI"},{"l":"src.InventoryManagement"},{"l":"src.Items"},{"l":"src.JavaReImplementations"},{"l":"src.Locations"},{"l":"src.NPC"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"src"},{"l":"src.Enums"},{"l":"src.Events"},{"l":"src.GUI"},{"l":"src.GUI.Screen"},{"l":"src.InventoryManagement"},{"l":"src.JavaReImplementations"},{"l":"src.Locations"},{"l":"src.NPC"}];updateSearchResults();

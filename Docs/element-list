@@ -2,8 +2,8 @@ src
 src.Enums
 src.Events
 src.GUI
+src.GUI.Screen
 src.InventoryManagement
-src.Items
 src.JavaReImplementations
 src.Locations
 src.NPC

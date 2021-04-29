@@ -3,6 +3,9 @@ package src.GUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A kezdeti főmenü
+ */
 public class MainMenu extends JFrame {
 	public MainMenu() {
 		ExitButton exit = new ExitButton("Exit");
@@ -25,9 +28,5 @@ public class MainMenu extends JFrame {
 
 		add(ng);
 		add(exit);
-	}
-
-	public void Dispose() {
-		dispose();
 	}
 }

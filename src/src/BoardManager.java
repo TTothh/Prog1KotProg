@@ -3,6 +3,9 @@ package src;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+/**
+ * kirajzolja az aktuális pályát és egy BufferedImage-gel tér visssza
+ */
 public class BoardManager {
 	public static BufferedImage draw() {
 		ArrayList<Map> maps = Game.getExpeditions();

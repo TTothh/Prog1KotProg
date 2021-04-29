@@ -10,6 +10,9 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.logging.*;
 
+/**
+ * Ez nem is volt feladat bro... minek csináltam meg. De műkszik és a gyökérben logol useless információkat.
+ */
 public class Logging {
 	public static void Log(String msg, String file, String className, Level level) {
 		Path log = Paths.get("Logs\\" + file);
@@ -25,7 +28,7 @@ public class Logging {
 
 			Files.writeString(log, msgToWrite, StandardOpenOption.APPEND);
 		} catch (IOException e) {
-			System.out.println("Error");
+			System.out.println("Error with logging");
 		}
 	}
 }

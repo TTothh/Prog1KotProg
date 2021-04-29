@@ -1,7 +1,6 @@
 package src.GUI.Screen;
 
 import src.Enums.Names;
-import src.GUI.ClickedListener;
 import src.NPC.Crew;
 import src.NPC.NPC;
 import src.Player;
@@ -12,48 +11,56 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
+/**
+ * Csapattárst felkínáló ablak
+ */
 public class CrewScreen extends JFrame {
 	protected Crew localCrew;
 	JPanel crew1 = new JPanel();
 	JPanel crew2 = new JPanel();
-	JButton close = new JButton("Accept");
 
-	public CrewScreen(Crew crew) {
+	/**
+	 * Kontruktor
+	 * @param crew
+	 */
+	public CrewScreen(Crew crew, ArrayList<src.Enums.NPC> types) {
 		localCrew = crew;
-		localCrew.addCrewMember(new NPC(src.Enums.NPC.SCOUT, Names.randomName()));
-		localCrew.addCrewMember(new NPC(src.Enums.NPC.SOLDIER, Names.randomName()));
-		localCrew.addCrewMember(new NPC(src.Enums.NPC.DONKEY, Names.randomName()));
+		localCrew.addCrewMember(new NPC(types.get(0), Names.randomName()));
+		localCrew.addCrewMember(new NPC(types.get(1), Names.randomName()));
+		localCrew.addCrewMember(new NPC(types.get(2), Names.randomName()));
 
+		draw();
+
+		setVisible(true);
+		pack();
+	}
+
+	/**
+	 * Setupolja a JFrame elemeit és kirajzolja illetva frissíti a layout-ot
+	 *
+	 */
+	public void draw() {
+		setUndecorated(true);
 		setSize(500, 300);
 		setBounds(30, 30, 500, 300);
 		setName("CrewScreen");
 		setLayout(new GridLayout());
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-		close.setSize(100, 50);
-		close.setLocation(390, 240);
-		close.addMouseListener((ClickedListener) e -> dispose());
+		remove(crew1);
+		remove(crew2);
 
-		draw();
-
-		add(crew1);
-		add(crew2);
-		add(close);
-
-		setVisible(true);
-	}
-
-	public void draw() {
-		crew1.removeAll();
-		crew2.removeAll();
+		repaint();
+		revalidate();
 
 		crew1.setSize(100, 60);
 		crew1.setLayout(new FlowLayout());
 		crew1.setBounds(10, 10, 100, 60);
 		crew1.setBackground(new Color(255, 0, 0, 0));
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < localCrew.getSize(); i++) {
 			crew1.add(new CrewSlot(false, i));
 		}
 
@@ -62,17 +69,23 @@ public class CrewScreen extends JFrame {
 		crew1.setBounds(10, 10, 100, 60);
 		crew2.setBackground(new Color(0, 255, 0, 0));
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < Player.getCrew().getSize(); i++) {
 			crew2.add(new CrewSlot(true, i));
 		}
+
+		add(crew1);
+		add(crew2);
+
+		repaint();
+		revalidate();
 	}
 
-	public void Dispose() {
-		removeAll();
-		setVisible(false);
+	//TODO: Inventory background
 
-	}
-
+	/**
+	 * Jpanel amit a crewitem-ekkel töltök föl
+	 *
+	 */
 	class CrewSlot extends JPanel {
 		public CrewSlot(boolean isplayerCrew, int index) {
 			if (Files.exists(Path.of("/src/src/Assets/GUI/InventorySlot.png"))) {
@@ -83,12 +96,22 @@ public class CrewScreen extends JFrame {
 			setSize(32, 32);
 			setLayout(new GridLayout());
 
-			add(new CrewItem(isplayerCrew, localCrew.getCrewMember(index).getSprite(), index));
+			if (isplayerCrew) {
+				add(new CrewItem(true, Player.getCrew().getCrewMember(index).getSprite(), index));
+			} else {
+				add(new CrewItem(false, localCrew.getCrewMember(index).getSprite(), index));
+			}
+
 		}
 	}
 
+	/**
+	*	Crewitem. Erre kattintva a jaátékos csapatához kerül egy új csapattárs akkor be is záródik az ablak.
+	*
+	 */
+
 	class CrewItem extends JLabel implements MouseListener {
-		int index = 0;
+		int index;
 		boolean isPlayerCrew;
 
 		public CrewItem(boolean isplayerCrew, Image image, int index) {
@@ -99,24 +122,36 @@ public class CrewScreen extends JFrame {
 			addMouseListener(this);
 		}
 
+		/**
+		 * Lebonyolítja az új csapattárs hozzáadását a játékos csapatához
+		 * @param e
+		 */
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			System.out.println(index);
-			if (isPlayerCrew) {
+			if (!isPlayerCrew) {
 				if (localCrew.canRemove() && Player.getCrew().canAdd()) {
-					localCrew.removeCrewMember(localCrew.getCrewMember(index).getUuid());
 					Player.getCrew().addCrewMember(localCrew.getCrewMember(index));
-					setIcon(null);
+
+					if(localCrew.getCrewMember(index).getType() == src.Enums.NPC.DONKEY) {
+						Player.setMaxInvSize(10);
+					}
+
+					if (localCrew.getCrewMember(index).getType() == src.Enums.NPC.SCOUT) {
+						Player.setFow(Player.getFow() + 2);
+					}
+
+					Player.setMoney(Player.getMoney() - localCrew.getCrewMember(index).getPrice());
+					localCrew.removeCrewMember(localCrew.getCrewMember(index).getUuid());
 				}
-			} else {
+			} /*else {
 				if (Player.getCrew().canRemove() && localCrew.canAdd()) {
 					Player.getCrew().removeCrewMember(Player.getCrew().getCrewMember(index).getUuid());
 					localCrew.addCrewMember(localCrew.getCrewMember(index));
 					setIcon(null);
 				}
-			}
+			}*/
 
-			draw();
+			dispose();
 		}
 
 		@Override

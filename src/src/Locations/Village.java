@@ -5,8 +5,6 @@ import src.InventoryManagement.Inventory;
 import src.NPC.Crew;
 import src.NPC.NPC;
 
-import java.awt.*;
-
 public class Village {
 	private int relation = 2;
 	private Inventory inv;

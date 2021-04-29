@@ -10,6 +10,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * a térkép egy mezője
+ */
+
 public class MapTile {
 	private final int SIZE = 32;
 
@@ -20,6 +24,14 @@ public class MapTile {
 	private Image sprite;
 	private String spritepath;
 
+	/**
+	 * kontruktor
+	 * @param isWet
+	 * @param isVisible
+	 * @param isWalkable
+	 * @param type
+	 * @param texture
+	 */
 	public MapTile(boolean isWet, boolean isVisible, boolean isWalkable, TileTypes type, String texture) {
 		this.isWet = isWet;
 		this.isVisible = isVisible;
@@ -43,20 +55,21 @@ public class MapTile {
 			this.sprite = new ImageIcon(String.valueOf(missing)).getImage();
 			this.spritepath = String.valueOf(missing);
 		}
-
-		System.out.println(spritepath);
 	}
 
 	public boolean isWet() {
 		return isWet;
 	}
 
-	//TODO rework
+	/**
+	 * Beállítja a nedvességét a mezőnek és update-eli a képét
+	 * @param wet
+	 */
 	public void setWet(boolean wet) {
 		this.isWet = wet;
 		String temp = spritepath.replace("/", "\\");
-		String asd = temp.replace("\\", "\\\\");
-		ArrayList<String> path = new ArrayList<>(Arrays.asList(asd.split("\\\\")));
+		String tempPath = temp.replace("\\", "\\\\");
+		ArrayList<String> path = new ArrayList<>(Arrays.asList(tempPath.split("\\\\")));
 
 		path.removeIf(s -> s.equals(""));
 
@@ -75,7 +88,6 @@ public class MapTile {
 			}
 			this.spritepath = sb.substring(1);
 		}
-		this.sprite = new ImageIcon(String.valueOf(this.spritepath)).getImage();
 	}
 
 	public boolean isVisible() {

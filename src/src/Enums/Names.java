@@ -1,10 +1,11 @@
 package src.Enums;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Nevek Értékei
+ */
 public enum Names {
 	//from: https://medium.com/@barelyharebooks/a-master-list-of-300-fantasy-names-characters-towns-and-villages-47c113f6a90b
 	Lydan,
@@ -109,6 +110,11 @@ public enum Names {
 	private static final List<Names> VALUES = List.of(values());
 	private static final int SIZE = VALUES.size();
 	private static final Random RANDOM = new Random();
+
+	/**
+	 * Random névvel tér visza
+	 * @return String név
+	 */
 
 	public static String randomName()  {
 		return String.valueOf(VALUES.get(RANDOM.nextInt(SIZE)));

@@ -2,8 +2,6 @@ package src.Locations;
 
 import src.InventoryManagement.Inventory;
 
-import java.awt.*;
-
 public class Altar {
 	private Inventory inv;
 
